@@ -26,10 +26,10 @@ public class Main {
         task2.setProgress(Progress.DONE);
         subtask1.setProgress(Progress.DONE);
         subtask2.setProgress(Progress.DONE);
-        taskManager.updateTaskProgress(task1);
-        taskManager.updateTaskProgress(task2);
-        taskManager.updateSubtaskProgress(subtask1);
-        taskManager.updateSubtaskProgress(subtask2);
+        taskManager.updateTask(task1);
+        taskManager.updateTask(task2);
+        taskManager.updateSubtask(subtask1);
+        taskManager.updateSubtask(subtask2);
 
         System.out.println(taskManager.getAllTasks());
         System.out.println(taskManager.getAllEpics());
