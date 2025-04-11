@@ -1,18 +1,18 @@
-package TASKTRACKER;
+package tasktracker;
 
 public class Task {
     private int id;
     private String name;
     private String description;
-    TaskProgress.Progress progress;
+    private Progress progress;
 
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
-        this.progress = TaskProgress.Progress.NEW;
+        this.progress = Progress.NEW;
     }
 
-    public TaskProgress.Progress getProgress() {
+    public Progress getProgress() {
         return progress;
     }
 
@@ -32,7 +32,7 @@ public class Task {
         this.id = id;
     }
 
-    public void setProgress(TaskProgress.Progress progress) {
+    public void setProgress(Progress progress) {
         this.progress = progress;
     }
 
