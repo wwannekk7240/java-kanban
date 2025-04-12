@@ -1,7 +1,6 @@
 package tasktracker;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import  java.util.HashMap;
 
 public class TaskManager {
@@ -22,15 +21,14 @@ public class TaskManager {
         return epic;
     }
 
-    public Subtask createSubtask(Subtask subtask) {
+    public void createSubtask(Subtask subtask) {
         int epicId = subtask.getEpicId();
-        if (!epics.containsKey(epicId)) return null;
+        if (!epics.containsKey(epicId)) return;
         subtask.setId(nextId++);
         subtasks.put(subtask.getId(), subtask);
         Epic epic = epics.get(epicId);
         epic.getSubtaskId().add(subtask.getId());
         updateEpic(epic);
-        return subtask;
     }
 
     public void updateTask(Task task) {
@@ -47,7 +45,7 @@ public class TaskManager {
         }
     }
 
-    private void updateEpic(Epic epic) {
+    private void updateEpicProgress(Epic epic) {
         if (epic == null && !epics.containsKey(epic.getId())) {
             return;
         }
@@ -71,6 +69,12 @@ public class TaskManager {
         } else {
             epic.setProgress(Progress.IN_PROGRESS);
         }
+    }
+
+    public void updateEpic(Epic epic) {
+        if (epic == null || !epics.containsKey(epic.getId())) return;
+        updateEpicProgress(epic);
+        epics.put(epic.getId(), epic);
     }
 
     public ArrayList<Task> getAllTasks() {
