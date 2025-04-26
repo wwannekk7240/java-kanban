@@ -19,4 +19,14 @@ public class Epic extends Task {
         return "Epic [ID = " + getId() + ", name = " + getName() + ", description = " + getDescription() +
                 ", progress = " + getProgress() + ", subtask = " + subtaskId + "]";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
