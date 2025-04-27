@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaskTest {
+class InMemoryTaskManagerTest {
 
     private TaskManager taskManager;
     private HistoryManager historyManager;
@@ -14,16 +14,6 @@ class TaskTest {
     void setUp() {
         taskManager = Managers.getDefault();
         historyManager = Managers.getDefaultHistory();
-    }
-
-    @Test
-    void tasksWithSameIdShouldBeEqual() {
-        Task task1 = new Task("Task 1", "Бад");
-        task1.setId(1);
-        Task task2 = new Task("Task 2", "Дэб");
-        task2.setId(1);
-
-        assertEquals(task1, task2, "Задачи с одинаковым id должны быть равны");
     }
 
     @Test
@@ -37,8 +27,8 @@ class TaskTest {
         int autoId = createdTask.getId();
 
         assertNotEquals(100, autoId, "Сгенерированный id не должен конфликтовать с заданным");
-        assertNotNull(taskManager.getTask(100, historyManager));
-        assertNotNull(taskManager.getTask(autoId, historyManager));
+        assertNotNull(taskManager.getTask(100));
+        assertNotNull(taskManager.getTask(autoId));
     }
 
     @Test
@@ -49,10 +39,11 @@ class TaskTest {
         String originalDesc = original.getDescription();
 
         taskManager.createTask(original);
-        Task fromManager = taskManager.getTask(1, historyManager);
+        Task fromManager = taskManager.getTask(1);
 
         assertEquals(originalName, fromManager.getName());
         assertEquals(originalDesc, fromManager.getDescription());
         assertEquals(original.getProgress(), fromManager.getProgress());
     }
+
 }

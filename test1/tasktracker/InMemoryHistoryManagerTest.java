@@ -27,8 +27,8 @@ class InMemoryHistoryManagerTest {
         Epic createdEpic = taskManager.createEpic(epic);
         int epicId = createdEpic.getId();
 
-        assertNotNull(taskManager.getTask(taskId, historyManager), "Должна находиться задача");
-        assertNotNull(taskManager.getEpic(epicId, historyManager), "Должен находиться эпик");
+        assertNotNull(taskManager.getTask(taskId), "Должна находиться задача");
+        assertNotNull(taskManager.getEpic(epicId), "Должен находиться эпик");
     }
 
     @Test

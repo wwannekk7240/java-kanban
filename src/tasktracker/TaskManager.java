@@ -1,6 +1,7 @@
 package tasktracker;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public interface TaskManager {
 
@@ -18,17 +19,17 @@ public interface TaskManager {
 
     void updateEpic(Epic epic);
 
-    ArrayList<Task> getAllTasks();
+    List<Task> getAllTasks();
 
-    ArrayList<Epic> getAllEpics();
+    List<Epic> getAllEpics();
 
-    ArrayList<Subtask> getAllSubtasks();
+    List<Subtask> getAllSubtasks();
 
-    Epic getEpic(int id, HistoryManager historyManager);
+    Epic getEpic(int id);
 
-    Task getTask(int id, HistoryManager historyManager);
+    Task getTask(int id);
 
-    Subtask getSubtask(int id, HistoryManager historyManager);
+    Subtask getSubtask(int id);
 
     Epic removeEpic(int epicId);
 
@@ -42,6 +43,6 @@ public interface TaskManager {
 
     Subtask clearSubtask();
 
-    ArrayList<Subtask> getAllSubtasksForEpic(int epicId);
+    List<Subtask> getAllSubtasksForEpic(int epicId);
 
 }
