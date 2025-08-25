@@ -20,6 +20,15 @@ public class InMemoryHistoryManager implements  HistoryManager{
         history.add(copyTask(task));
     }
 
+    @Override
+    public void remove(int id) {
+        for (int i = history.size() - 1; i >= 0; i--) {
+            if (history.get(i).getId() == id) {
+                history.remove(i);
+            }
+        }
+    }
+
     private Task copyTask(Task original) {
         Task copy;
         if (original instanceof Epic) {
