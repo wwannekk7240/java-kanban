@@ -2,6 +2,7 @@ package tasktracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,5 +42,20 @@ class TaskTest {
         assertEquals("OName", savedTask.getName(), "Имя задачи не должно меняться");
         assertEquals("ODescription", savedTask.getDescription(), "Описание задачи не должно меняться");
         assertEquals(Progress.NEW, savedTask.getProgress(), "Статус задачи не должен меняться");
+    }
+
+    @Test
+    void testHistoryIsolationFromTaskModifications() {
+        Task task = new Task("Task", "Description");
+        task.setId(1);
+        historyManager.add(task);
+
+        task.setName("MName");
+        task.setDescription("MDescription");
+        List<Task> history = historyManager.getHistory();
+        Task historyTask = history.getFirst();
+
+        assertEquals("Task", historyTask.getName(), "Задача не должна меняться");
+        assertEquals("Description", historyTask.getDescription(), "Описание не должно меняться");
     }
 }
