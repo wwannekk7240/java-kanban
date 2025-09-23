@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InMemoryHistoryManager implements  HistoryManager{
+public class InMemoryHistoryManager implements  HistoryManager {
 
     private Node first;
     private Node last;
@@ -18,11 +18,11 @@ public class InMemoryHistoryManager implements  HistoryManager{
 
     @Override
     public void add(Task task) {
-        if(task == null) {
+        if (task == null) {
             return;
         }
         int taskId = task.getId();
-        if(nodeHistory.containsKey(taskId)) {
+        if (nodeHistory.containsKey(taskId)) {
             removeNode(nodeHistory.get(taskId));
         }
         Task taskCopy = copyTask(task);
@@ -32,7 +32,7 @@ public class InMemoryHistoryManager implements  HistoryManager{
 
     @Override
     public void remove(int id) {
-        if(nodeHistory.containsKey(id)) {
+        if (nodeHistory.containsKey(id)) {
             removeNode(nodeHistory.get(id));
             nodeHistory.remove(id);
         }
@@ -56,7 +56,7 @@ public class InMemoryHistoryManager implements  HistoryManager{
 
     public void linkLast(Task task) {
         Node newNode = new Node(task);
-        if(last == null) {
+        if (last == null) {
             first = newNode;
         } else {
             last.next = newNode;
@@ -68,7 +68,7 @@ public class InMemoryHistoryManager implements  HistoryManager{
     public List<Task> getTasks() {
         List<Task> tasksNode = new ArrayList<>();
         Node current = first;
-        while(current != null) {
+        while (current != null) {
             tasksNode.add(current.task);
             current = current.next;
         }
@@ -76,19 +76,19 @@ public class InMemoryHistoryManager implements  HistoryManager{
     }
 
     public void removeNode(Node node) {
-        if(node == null) {
+        if (node == null) {
             return;
         }
         nodeHistory.remove(node.task.getId());
         Node prevNode = node.prev;
         Node nextNode = node.next;
-        if(prevNode == null) {
+        if (prevNode == null) {
             first = nextNode;
         } else {
             prevNode.next = nextNode;
             node.prev = null;
         }
-        if(nextNode == null) {
+        if (nextNode == null) {
             last = prevNode;
         } else {
             nextNode.prev = prevNode;
