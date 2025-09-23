@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Поехали!");
 
-        Epic epic = new Epic("Заняться курсами", "Подготовить домашнюю работу");
+        Epic epic = new Epic("Заняться учёбоё", "Подготовить домашнюю работу");
         inMemoryTaskManager.createEpic(epic);
         Task task1 = new Task("Убраться в прихожей", "Помыть пол");
         inMemoryTaskManager.createTask(task1);
