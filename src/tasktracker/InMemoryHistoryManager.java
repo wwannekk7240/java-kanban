@@ -1,23 +1,41 @@
 package tasktracker;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class InMemoryHistoryManager implements  HistoryManager{
+public class InMemoryHistoryManager implements  HistoryManager {
 
-    private final ArrayList<Task> history = new ArrayList<>(10);
+    private Node first;
+    private Node last;
+    private final Map<Integer, Node> nodeHistory = new HashMap<>();
 
     @Override
     public List<Task> getHistory() {
-        return new ArrayList<>(history);
+        return getTasks();
     }
 
     @Override
     public void add(Task task) {
-        if (history.size() >= 10) {
-            history.removeFirst();
+        if (task == null) {
+            return;
         }
-        history.add(copyTask(task));
+        int taskId = task.getId();
+        if (nodeHistory.containsKey(taskId)) {
+            removeNode(nodeHistory.get(taskId));
+        }
+        Task taskCopy = copyTask(task);
+        linkLast(taskCopy);
+        nodeHistory.put(taskId, last);
+    }
+
+    @Override
+    public void remove(int id) {
+        if (nodeHistory.containsKey(id)) {
+            removeNode(nodeHistory.get(id));
+            nodeHistory.remove(id);
+        }
     }
 
     private Task copyTask(Task original) {
@@ -34,5 +52,47 @@ public class InMemoryHistoryManager implements  HistoryManager{
         copy.setId(original.getId());
         copy.setProgress(original.getProgress());
         return copy;
+    }
+
+    public void linkLast(Task task) {
+        Node newNode = new Node(task);
+        if (last == null) {
+            first = newNode;
+        } else {
+            last.next = newNode;
+            newNode.prev = last;
+        }
+        last = newNode;
+    }
+
+    public List<Task> getTasks() {
+        List<Task> tasksNode = new ArrayList<>();
+        Node current = first;
+        while (current != null) {
+            tasksNode.add(current.task);
+            current = current.next;
+        }
+        return tasksNode;
+    }
+
+    public void removeNode(Node node) {
+        if (node == null) {
+            return;
+        }
+        nodeHistory.remove(node.task.getId());
+        Node prevNode = node.prev;
+        Node nextNode = node.next;
+        if (prevNode == null) {
+            first = nextNode;
+        } else {
+            prevNode.next = nextNode;
+            node.prev = null;
+        }
+        if (nextNode == null) {
+            last = prevNode;
+        } else {
+            nextNode.prev = prevNode;
+            node.next = null;
+        }
     }
 }

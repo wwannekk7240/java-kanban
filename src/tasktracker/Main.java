@@ -8,11 +8,11 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Поехали!");
 
-        Epic epic = new Epic("Заняться учебой", "Подготовить домашнюю работу");
+        Epic epic = new Epic("Заняться учёбоё", "Подготовить домашнюю работу");
         inMemoryTaskManager.createEpic(epic);
         Task task1 = new Task("Убраться в прихожей", "Помыть пол");
         inMemoryTaskManager.createTask(task1);
-        Task task2 = new Task("Постирать вещи", "Загрузить в стиралку");
+        Task task2 = new Task("Постирать вещи", "Загрузить в стиральную машину");
         inMemoryTaskManager.createTask(task2);
         Subtask subtask1 = new Subtask("Английский", "1.1", epic.getId());
         inMemoryTaskManager.createSubtask(subtask1);
