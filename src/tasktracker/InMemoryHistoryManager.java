@@ -1,33 +1,40 @@
 package tasktracker;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InMemoryHistoryManager implements  HistoryManager{
 
-    private final ArrayList<Task> history = new ArrayList<>(10);
     private Node first;
     private Node last;
+    private final Map<Integer, Node> nodeHistory = new HashMap<>();
 
     @Override
     public List<Task> getHistory() {
-        return new ArrayList<>(history);
+        return getTasks();
     }
 
     @Override
     public void add(Task task) {
-        if (history.size() >= 10) {
-            history.removeFirst();
+        if(task == null) {
+            return;
         }
-        history.add(copyTask(task));
+        int taskId = task.getId();
+        if(nodeHistory.containsKey(taskId)) {
+            removeNode(nodeHistory.get(taskId));
+        }
+        Task taskCopy = copyTask(task);
+        linkLast(taskCopy);
+        nodeHistory.put(taskId, last);
     }
 
     @Override
     public void remove(int id) {
-        for (int i = history.size() - 1; i >= 0; i--) {
-            if (history.get(i).getId() == id) {
-                history.remove(i);
-            }
+        if(nodeHistory.containsKey(id)) {
+            removeNode(nodeHistory.get(id));
+            nodeHistory.remove(id);
         }
     }
 
@@ -55,7 +62,7 @@ public class InMemoryHistoryManager implements  HistoryManager{
             last.next = newNode;
             newNode.prev = last;
         }
-        newNode = last;
+        last = newNode;
     }
 
     public List<Task> getTasks() {
@@ -72,6 +79,7 @@ public class InMemoryHistoryManager implements  HistoryManager{
         if(node == null) {
             return;
         }
+        nodeHistory.remove(node.task.getId());
         Node prevNode = node.prev;
         Node nextNode = node.next;
         if(prevNode == null) {
