@@ -48,8 +48,8 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task [ID = " + id + ", name = " + name + ", description = " + description +
-                ", progress = " + progress + "]" ;
+        return "Task [ID = " + id + ", name = " + name + ", description = " + description
+                + ", progress = " + progress + "]";
     }
 
     @Override
