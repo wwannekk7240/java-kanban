@@ -11,6 +11,16 @@ public class InMemoryHistoryManager implements  HistoryManager {
     private Node last;
     private final Map<Integer, Node> nodeHistory = new HashMap<>();
 
+    private static class Node {
+        Task task;
+        Node prev;
+        Node next;
+
+        Node(Task task) {
+            this.task = task;
+        }
+    }
+
     @Override
     public List<Task> getHistory() {
         return getTasks();
