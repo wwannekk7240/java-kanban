@@ -1,11 +1,15 @@
-package tasktracker;
+package tasktracker.managers;
+
+import tasktracker.tasks.Subtask;
+import tasktracker.tasks.Task;
+import tasktracker.tasks.Epic;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InMemoryHistoryManager implements  HistoryManager {
+public class InMemoryHistoryManager implements HistoryManager {
 
     private Node first;
     private Node last;

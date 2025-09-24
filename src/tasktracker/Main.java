@@ -1,5 +1,14 @@
 package tasktracker;
 
+import tasktracker.managers.HistoryManager;
+import tasktracker.managers.InMemoryHistoryManager;
+import tasktracker.managers.InMemoryTaskManager;
+import tasktracker.managers.TaskManager;
+import tasktracker.tasks.Epic;
+import tasktracker.tasks.Progress;
+import tasktracker.tasks.Subtask;
+import tasktracker.tasks.Task;
+
 public class Main {
 
     private static final InMemoryTaskManager inMemoryTaskManager = new InMemoryTaskManager();
