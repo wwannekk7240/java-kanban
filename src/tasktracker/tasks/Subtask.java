@@ -10,6 +10,16 @@ public class Subtask extends Task {
         this.epicId = epicId;
     }
 
+    public Subtask(Subtask that) {
+        super(that);
+        this.epicId = that.epicId;
+    }
+
+    @Override
+    public Subtask copy() {
+        return new Subtask(this);
+    }
+
     public int getEpicId() {
         return epicId;
     }

@@ -10,6 +10,16 @@ public class Epic extends Task {
         super(name, description);
     }
 
+    public Epic(Epic that) {
+        super(that);
+        this.subtaskId = new ArrayList<>(that.subtaskId);
+    }
+
+    @Override
+    public Epic copy() {
+        return new Epic(this);
+    }
+
     public ArrayList<Integer> getSubtaskId() {
         return subtaskId;
     }

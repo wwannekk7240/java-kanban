@@ -39,7 +39,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         if (nodeHistory.containsKey(taskId)) {
             removeNode(nodeHistory.get(taskId));
         }
-        Task taskCopy = copyTask(task);
+        Task taskCopy = task.copy();
         linkLast(taskCopy);
         nodeHistory.put(taskId, last);
     }
@@ -48,25 +48,9 @@ public class InMemoryHistoryManager implements HistoryManager {
     public void remove(int id) {
         if (nodeHistory.containsKey(id)) {
             removeNode(nodeHistory.get(id));
-            nodeHistory.remove(id);
         }
     }
 
-    private Task copyTask(Task original) {
-        Task copy;
-        if (original instanceof Epic) {
-            Epic epic = (Epic) original;
-            copy = new Epic(epic.getName(), epic.getDescription());
-        } else if (original instanceof Subtask) {
-            Subtask subtask = (Subtask) original;
-            copy = new Subtask(subtask.getName(), subtask.getDescription(), subtask.getEpicId());
-        } else {
-            copy = new Task(original.getName(), original.getDescription());
-        }
-        copy.setId(original.getId());
-        copy.setProgress(original.getProgress());
-        return copy;
-    }
 
     public void linkLast(Task task) {
         Node newNode = new Node(task);
