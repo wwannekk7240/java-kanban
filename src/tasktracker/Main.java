@@ -1,5 +1,14 @@
 package tasktracker;
 
+import tasktracker.managers.HistoryManager;
+import tasktracker.managers.InMemoryHistoryManager;
+import tasktracker.managers.InMemoryTaskManager;
+import tasktracker.managers.TaskManager;
+import tasktracker.tasks.Epic;
+import tasktracker.tasks.Progress;
+import tasktracker.tasks.Subtask;
+import tasktracker.tasks.Task;
+
 public class Main {
 
     private static final InMemoryTaskManager inMemoryTaskManager = new InMemoryTaskManager();
@@ -8,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Поехали!");
 
-        Epic epic = new Epic("Заняться учёбоё", "Подготовить домашнюю работу");
+        Epic epic = new Epic("Заняться учёбой", "Подготовить домашнюю работу");
         inMemoryTaskManager.createEpic(epic);
         Task task1 = new Task("Убраться в прихожей", "Помыть пол");
         inMemoryTaskManager.createTask(task1);

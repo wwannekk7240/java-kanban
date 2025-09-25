@@ -1,4 +1,4 @@
-package tasktracker;
+package tasktracker.tasks;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,16 @@ public class Epic extends Task {
 
     public Epic(String name, String description) {
         super(name, description);
+    }
+
+    public Epic(Epic that) {
+        super(that);
+        this.subtaskId = new ArrayList<>(that.subtaskId);
+    }
+
+    @Override
+    public Epic copy() {
+        return new Epic(this);
     }
 
     public ArrayList<Integer> getSubtaskId() {

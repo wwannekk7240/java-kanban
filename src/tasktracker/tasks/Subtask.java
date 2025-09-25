@@ -1,4 +1,4 @@
-package tasktracker;
+package tasktracker.tasks;
 
 import java.util.Objects;
 
@@ -8,6 +8,16 @@ public class Subtask extends Task {
     public Subtask(String name, String description, int epicId) {
         super(name, description);
         this.epicId = epicId;
+    }
+
+    public Subtask(Subtask that) {
+        super(that);
+        this.epicId = that.epicId;
+    }
+
+    @Override
+    public Subtask copy() {
+        return new Subtask(this);
     }
 
     public int getEpicId() {

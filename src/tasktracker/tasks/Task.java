@@ -1,4 +1,4 @@
-package tasktracker;
+package tasktracker.tasks;
 
 import java.util.Objects;
 
@@ -12,6 +12,17 @@ public class Task {
         this.name = name;
         this.description = description;
         this.progress = Progress.NEW;
+    }
+
+    public Task(Task that) {
+        this.name = that.name;
+        this.description = that.description;
+        this.id = that.id;
+        this.progress = that.progress;
+    }
+
+    public Task copy() {
+        return new Task(this);
     }
 
     public Progress getProgress() {
