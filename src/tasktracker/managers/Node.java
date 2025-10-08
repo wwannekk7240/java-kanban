@@ -1,4 +1,6 @@
-package tasktracker;
+package tasktracker.managers;
+
+import tasktracker.tasks.Task;
 
 public class Node {
     Task task;

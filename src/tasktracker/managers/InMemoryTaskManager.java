@@ -1,15 +1,20 @@
-package tasktracker;
+package tasktracker.managers;
+
+import tasktracker.tasks.Epic;
+import tasktracker.tasks.Progress;
+import tasktracker.tasks.Subtask;
+import tasktracker.tasks.Task;
 
 import java.util.ArrayList;
-import  java.util.HashMap;
+import java.util.HashMap;
 import java.util.List;
 
 public class InMemoryTaskManager implements TaskManager {
-    private final HashMap<Integer, Task> tasks = new HashMap<>();
-    private final HashMap<Integer, Epic> epics = new HashMap<>();
-    private final HashMap<Integer, Subtask> subtasks = new HashMap<>();
-    private int nextId = 1;
-    private final HistoryManager historyManager = Managers.getDefaultHistory();
+    protected final HashMap<Integer, Task> tasks = new HashMap<>();
+    protected final HashMap<Integer, Epic> epics = new HashMap<>();
+    protected final HashMap<Integer, Subtask> subtasks = new HashMap<>();
+    protected int nextId = 1;
+    protected final HistoryManager historyManager = Managers.getDefaultHistory();
 
     private Task deepCopyTask(Task original) {
         if (original == null) {

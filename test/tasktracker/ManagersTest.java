@@ -1,6 +1,9 @@
 package tasktracker;
 
 import org.junit.jupiter.api.Test;
+import tasktracker.managers.HistoryManager;
+import tasktracker.managers.Managers;
+import tasktracker.managers.TaskManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 class ManagersTest {

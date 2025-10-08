@@ -1,4 +1,4 @@
-package tasktracker;
+package tasktracker.tasks;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,10 @@ public class Epic extends Task {
 
     public ArrayList<Integer> getSubtaskId() {
         return subtaskId;
+    }
+
+    public void addSubtaskId(int subtaskId) {
+        this.subtaskId.add(subtaskId);
     }
 
     @Override
