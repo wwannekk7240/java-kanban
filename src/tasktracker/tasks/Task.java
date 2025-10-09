@@ -46,6 +46,8 @@ public class Task {
         this.description = description;
     }
 
+    public TaskType getType() { return  TaskType.TASK; }
+
     @Override
     public String toString() {
         return "Task [ID = " + id + ", name = " + name + ", description = " + description
