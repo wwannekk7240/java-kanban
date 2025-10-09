@@ -28,7 +28,7 @@ public class Subtask extends Task {
     public boolean equals(Object o) {
         if (!super.equals(o)) return false;
         Subtask subtask = (Subtask) o;
-        return epicId == subtask.epicId;  // + сравнение epicId
+        return epicId == subtask.epicId;
     }
 
     @Override
@@ -37,5 +37,7 @@ public class Subtask extends Task {
     }
 
     @Override
-    public TaskType getType() { return TaskType.SUBTASK; }
+    public TaskType getType() {
+        return TaskType.SUBTASK;
+    }
 }
