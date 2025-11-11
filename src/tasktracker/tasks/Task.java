@@ -40,9 +40,13 @@ public class Task {
         return  TaskType.TASK;
     }
 
-    public Duration getDuration() { return duration; }
+    public Duration getDuration() {
+        return duration;
+    }
 
-    public LocalDateTime getStartTime() { return startTime; }
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
 
     public LocalDateTime getEndTime() {
         if (startTime == null || duration == null) {
@@ -67,12 +71,13 @@ public class Task {
         this.description = description;
     }
 
-    public void setDuration(Duration duration) { this.duration = duration; }
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
 
-    public void setStartTime(LocalDateTime startTime) { this.startTime = startTime; }
-
-
-
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
 
     @Override
     public String toString() {
