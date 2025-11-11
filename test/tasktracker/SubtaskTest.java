@@ -20,20 +20,20 @@ class SubtaskTest {
 
     @Test
     void subtasksWithSameIdShouldBeEqual() {
-        Subtask subtask1 = new Subtask("Sub 1", "АБВ", 1);
+        Subtask subtask1 = new Subtask("Sub 1", "АБВ", null, null, 1);
         subtask1.setId(2);
-        Subtask subtask2 = new Subtask("Sub 2", "ВБА", 1);
+        Subtask subtask2 = new Subtask("Sub 2", "ВБА", null, null, 1);
         subtask2.setId(2);
         assertEquals(subtask1, subtask2);
     }
 
     @Test
     void subtaskCantBeItsOwnEpic() {
-        Epic epic = new Epic("Test Epic", "Что - то");
+        Epic epic = new Epic("Test Epic", "Что - то", null, null);
         Epic createdEpic = taskManager.createEpic(epic);
         int epicId = createdEpic.getId();
 
-        Subtask subtask = new Subtask("Invalid Subtask", "Кто - то", epicId);
+        Subtask subtask = new Subtask("Invalid Subtask", "Кто - то", null, null, epicId);
         subtask.setId(epicId);
 
         assertThrows(IllegalArgumentException.class, () -> {

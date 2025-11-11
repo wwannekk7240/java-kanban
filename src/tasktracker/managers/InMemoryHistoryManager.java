@@ -46,12 +46,13 @@ public class InMemoryHistoryManager implements HistoryManager {
         Task copy;
         if (original instanceof Epic) {
             Epic epic = (Epic) original;
-            copy = new Epic(epic.getName(), epic.getDescription());
+            copy = new Epic(epic.getName(), epic.getDescription(), epic.getDuration(), epic.getStartTime());
         } else if (original instanceof Subtask) {
             Subtask subtask = (Subtask) original;
-            copy = new Subtask(subtask.getName(), subtask.getDescription(), subtask.getEpicId());
+            copy = new Subtask(subtask.getName(), subtask.getDescription(), subtask.getDuration(),
+                    subtask.getStartTime(), subtask.getEpicId());
         } else {
-            copy = new Task(original.getName(), original.getDescription());
+            copy = new Task(original.getName(), original.getDescription(), original.getDuration(), original.getStartTime());
         }
         copy.setId(original.getId());
         copy.setProgress(original.getProgress());

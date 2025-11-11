@@ -17,15 +17,15 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Поехали!");
 
-        Epic epic = new Epic("Заняться учёбоё", "Подготовить домашнюю работу");
+        Epic epic = new Epic("Заняться учёбоё", "Подготовить домашнюю работу", null, null);
         inMemoryTaskManager.createEpic(epic);
-        Task task1 = new Task("Убраться в прихожей", "Помыть пол");
+        Task task1 = new Task("Убраться в прихожей", "Помыть пол", null, null);
         inMemoryTaskManager.createTask(task1);
-        Task task2 = new Task("Постирать вещи", "Загрузить в стиральную машину");
+        Task task2 = new Task("Постирать вещи", "Загрузить в стиральную машину", null, null);
         inMemoryTaskManager.createTask(task2);
-        Subtask subtask1 = new Subtask("Английский", "1.1", epic.getId());
+        Subtask subtask1 = new Subtask("Английский", "1.1", null, null, epic.getId());
         inMemoryTaskManager.createSubtask(subtask1);
-        Subtask subtask2 = new Subtask("Математика", "2.1", epic.getId());
+        Subtask subtask2 = new Subtask("Математика", "2.1", null, null, epic.getId());
         inMemoryTaskManager.createSubtask(subtask2);
 
         System.out.println(inMemoryTaskManager.getAllTasks());

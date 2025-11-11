@@ -24,22 +24,22 @@ class InMemoryHistoryManagerTest {
     void setUp() {
         historyManager = Managers.getDefaultHistory();
         taskManager = Managers.getDefault();
-        task1 = new Task("Task 1", "Description 1");
+        task1 = new Task("Task 1", "Description 1", null, null);
         task1.setId(1);
-        task2 = new Task("Task 2", "Description 2");
+        task2 = new Task("Task 2", "Description 2", null, null);
         task2.setId(2);
-        task3 = new Task("Task 3", "Description 3");
+        task3 = new Task("Task 3", "Description 3", null, null);
         task3.setId(3);
     }
 
     @Test
     void managerShouldAddAndFindTasksById() {
 
-        Task task = new Task("Task", "Description");
+        Task task = new Task("Task", "Description", null, null);
         Task createdTask = taskManager.createTask(task);
         int taskId = createdTask.getId();
 
-        Epic epic = new Epic("Epic", "Description");
+        Epic epic = new Epic("Epic", "Description", null, null);
         Epic createdEpic = taskManager.createEpic(epic);
         int epicId = createdEpic.getId();
 
@@ -50,7 +50,7 @@ class InMemoryHistoryManagerTest {
     @Test
     void historyManagerShouldPreserveTaskState() {
         HistoryManager historyManager = Managers.getDefaultHistory();
-        Task task = new Task("Task", "Что - то");
+        Task task = new Task("Task", "Что - то", null, null);
         task.setId(1);
 
         historyManager.add(task);
@@ -116,6 +116,16 @@ class InMemoryHistoryManagerTest {
     void testEmptyHistory() {
         List<Task> history = historyManager.getHistory();
         assertTrue(history.isEmpty(), "История должна быть пустой при инициализации");
+    }
+
+    @Test
+    void add_shouldNotAllowDuplicates() {
+        historyManager.add(task1);
+        historyManager.add(task1);
+        historyManager.add(task1);
+
+        List<Task> history = historyManager.getHistory();
+        assertEquals(1, history.size(), "История не должна содержать дубликатов");
     }
 
 

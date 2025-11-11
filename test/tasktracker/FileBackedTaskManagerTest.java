@@ -32,14 +32,14 @@ public class FileBackedTaskManagerTest {
 
     @Test
     void saveAndLoadMultipleTasks() {
-        Task task1 = new Task("T 1", "D 1");
-        Task task2 = new Task("T 2", "D 2");
-        Epic epic1 = new Epic("E 1", "Epic D 1");
+        Task task1 = new Task("T 1", "D 1", null, null);
+        Task task2 = new Task("T 2", "D 2", null, null);
+        Epic epic1 = new Epic("E 1", "Epic D 1", null, null);
         manager.createTask(task1);
         manager.createTask(task2);
         manager.createEpic(epic1);
-        Subtask subtask1 = new Subtask("S 1", "Sub D 1", epic1.getId());
-        Subtask subtask2 = new Subtask("S 2", "Sub D 2", epic1.getId());
+        Subtask subtask1 = new Subtask("S 1", "Sub D 1", null, null, epic1.getId());
+        Subtask subtask2 = new Subtask("S 2", "Sub D 2", null, null, epic1.getId());
         manager.createSubtask(subtask1);
         manager.createSubtask(subtask2);
         manager.save();

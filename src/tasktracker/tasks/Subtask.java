@@ -1,12 +1,14 @@
 package tasktracker.tasks;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Subtask extends Task {
     private int epicId;
 
-    public Subtask(String name, String description, int epicId) {
-        super(name, description);
+    public Subtask(String name, String description, Duration duration, LocalDateTime startTime, int epicId) {
+        super(name, description, duration, startTime);
         this.epicId = epicId;
     }
 
@@ -21,7 +23,8 @@ public class Subtask extends Task {
     @Override
     public String toString() {
         return "Subtask [ID = " + getId() + ", name = " + getName() + ", description = " + getDescription() +
-                ", progress = " + getProgress() + ", Epic ID = " + epicId + "]";
+                ", progress = " + getProgress() + ", Epic ID = " + epicId + ", duration" + getDuration() + ", startTime"
+                + getStartTime() + "]";
     }
 
     @Override

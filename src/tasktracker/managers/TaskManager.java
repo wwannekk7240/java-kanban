@@ -4,7 +4,6 @@ package tasktracker.managers;
 import tasktracker.tasks.Epic;
 import tasktracker.tasks.Subtask;
 import tasktracker.tasks.Task;
-
 import java.util.List;
 
 public interface TaskManager {
@@ -48,5 +47,7 @@ public interface TaskManager {
     Subtask clearSubtask();
 
     List<Subtask> getAllSubtasksForEpic(int epicId);
+
+    List<Task> getPrioritizedTasks();
 
 }
