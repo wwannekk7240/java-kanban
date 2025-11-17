@@ -1,13 +1,8 @@
 package tasktracker.tasks;
 
-import tasktracker.managers.InMemoryTaskManager;
 import java.util.ArrayList;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Epic extends Task {
     private ArrayList<Integer> subtaskId = new ArrayList<>();
