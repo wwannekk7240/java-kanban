@@ -25,39 +25,6 @@ public class Epic extends Task {
         this.subtaskId.add(subtaskId);
     }
 
-    public void updateEpicTiming(InMemoryTaskManager taskManager) {
-        if (subtaskId.isEmpty()) {
-            super.setStartTime(null);
-            super.setDuration(Duration.ZERO);
-            this.endTime = null;
-            return;
-        }
-
-        List<Subtask> validSubtasks = subtaskId.stream()
-                .map(taskManager::getSubtask)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-
-        Optional<LocalDateTime> earliestStart = validSubtasks.stream()
-                .map(Subtask::getStartTime)
-                .filter(Objects::nonNull)
-                .min(LocalDateTime::compareTo);
-
-        Optional<LocalDateTime> latestEnd = validSubtasks.stream()
-                .map(Subtask::getEndTime)
-                .filter(Objects::nonNull)
-                .max(LocalDateTime::compareTo);
-
-        Duration totalDuration = validSubtasks.stream()
-                .map(Subtask::getDuration)
-                .filter(Objects::nonNull)
-                .reduce(Duration.ZERO, Duration::plus);
-
-        setStartTime(earliestStart.orElse(null));
-        setDuration(totalDuration);
-        endTime = latestEnd.orElse(null);
-    }
-
     @Override
     public String toString() {
         return "Epic [ID = " + getId() + ", name = " + getName() + ", description = " + getDescription() +
@@ -83,5 +50,9 @@ public class Epic extends Task {
     @Override
     public LocalDateTime getEndTime() {
         return endTime;
+    }
+
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
     }
 }
