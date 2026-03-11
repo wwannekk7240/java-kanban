@@ -2,6 +2,12 @@ package tasktracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tasktracker.managers.HistoryManager;
+import tasktracker.managers.Managers;
+import tasktracker.managers.TaskManager;
+import tasktracker.tasks.Progress;
+import tasktracker.tasks.Task;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,9 +25,9 @@ class TaskTest {
 
     @Test
     void tasksWithSameIdShouldBeEqual() {
-        Task task1 = new Task("Task 1", "Бад");
+        Task task1 = new Task("Task 1", "Бад", null, null);
         task1.setId(1);
-        Task task2 = new Task("Task 2", "Дэб");
+        Task task2 = new Task("Task 2", "Дэб", null, null);
         task2.setId(1);
 
         assertEquals(task1, task2, "Задачи с одинаковым id должны быть равны");
@@ -29,7 +35,7 @@ class TaskTest {
 
     @Test
     void testTaskModificationThroughSettersDoesNotAffectManager() {
-        Task task = new Task("OName", "ODescription");
+        Task task = new Task("OName", "ODescription", null, null);
         task.setProgress(Progress.NEW);
         Task createdTask = taskManager.createTask(task);
         int taskId = createdTask.getId();
@@ -46,7 +52,7 @@ class TaskTest {
 
     @Test
     void testHistoryIsolationFromTaskModifications() {
-        Task task = new Task("Task", "Description");
+        Task task = new Task("Task", "Description", null, null);
         task.setId(1);
         historyManager.add(task);
 

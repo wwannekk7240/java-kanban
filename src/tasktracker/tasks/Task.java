@@ -1,17 +1,23 @@
-package tasktracker;
+package tasktracker.tasks;
 
 import java.util.Objects;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 public class Task {
     private int id;
     private String name;
     private String description;
     private Progress progress;
+    private Duration duration;
+    private LocalDateTime startTime;
 
-    public Task(String name, String description) {
+    public Task(String name, String description, Duration duration, LocalDateTime startTime) {
         this.name = name;
         this.description = description;
         this.progress = Progress.NEW;
+        this.duration = duration;
+        this.startTime = startTime;
     }
 
     public Progress getProgress() {
@@ -30,6 +36,25 @@ public class Task {
         return description;
     }
 
+    public TaskType getType() {
+        return  TaskType.TASK;
+    }
+
+    public Duration getDuration() {
+        return duration;
+    }
+
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalDateTime getEndTime() {
+        if (startTime == null || duration == null) {
+            return  null;
+        }
+        return startTime.plus(duration);
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -46,10 +71,19 @@ public class Task {
         this.description = description;
     }
 
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
+
     @Override
     public String toString() {
         return "Task [ID = " + id + ", name = " + name + ", description = " + description
-                + ", progress = " + progress + "]";
+                + ", progress = " + progress + ", duration" + duration + ", startTime"
+                + startTime + "]";
     }
 
     @Override
